@@ -1,1 +1,9 @@
 # FullStackWebSites
+Full-Stack Web Developer, günümüzün en popüler geliştirici mesleğidir. Çünkü artık web sitelerinde bir sayfaya erişmenin yanı sıra kullanıcı kimlik doğrulamaları yapmak, veri depolamak daha sonra bu veriye erişmek isteriz. Aynı zamanda geliştirici web sitesinde bulunan bilgileri etkileyici bir şekilde kullanıcıya göstermek isteyebilir. Bu yüzden full-stack web siteleri daha fazla rağbet görmektedir.
+    Projenin amacı: Havaalanı sitesi tasarımında hem front-end kısmı hem de bilet satış için tasarlanmış back-end kısmı oluşturmaktır. Projenin bilet sorgulama, tarih ve güzergahlara uygun biletleri sıralama, yolcu bilgilerini alma, güncelleme ve silme gibi temel veritabanı işlemlerini yapması beklenmektedir. Projenin front-end kısmında HTML, CSS, Javascript, Jquery ve Bootstrap kullanılmıştır. Back-end kısmında MVC,MSSQL(Visual Studio SQL Server Object Explorer) kullanılmıştır.
+Anahtar Kelimeler: Havaalanı, bilet satış, seyahat, tatil, uçak bileti, HappyFlights
+
+
+Full-Stack Web Developer is the business of today's most popular developers. In addition to accessing a page in the user's web site, we want to authenticate, store the data and then access this data. At the same time, the user may want to display the information on the website in an impressive manner. Because of this, full support web sites are more popular.
+Purpose of the project: The rear end designed for both front end and ticket sales in airport site design. It is expected that the procurement of the project will perform basic operations such as buying, updating and deleting appropriate information. HTML, CSS, Javascript, Jquery and Bootstrap are used at the front end of the project. The backend uses MVC, MSSQL (Visual Studio SQL Server Object Explorer).
+Keywords: Airport, ticket sales, travel, holiday, airline ticket, HappyFlights
