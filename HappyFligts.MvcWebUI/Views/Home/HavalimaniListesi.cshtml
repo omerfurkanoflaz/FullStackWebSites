@@ -1,0 +1,8 @@
+﻿@*Bizden bir model bekliyor.Modelin tipini IEnumerable yaptım.*@
+@model IEnumerable<HappyFligts.MvcWebUI.Entity.Havalimanı> 
+
+      @foreach (var item in Model)
+        {
+          <option>@item.Havalimani_Adi</option> @*Modelden gelen verileri tek tek alıp form elemanının <option> tagları arasında yazıldığı için veriyi taglar arasına ekliyorum.*@
+         }
+           

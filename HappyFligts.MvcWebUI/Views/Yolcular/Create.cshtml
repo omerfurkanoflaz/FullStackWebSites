@@ -1,0 +1,91 @@
+﻿@model HappyFligts.MvcWebUI.Entity.Yolcular
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (Convert.ToInt32(TempData["yetiskinSayisi"]) + Convert.ToInt32(TempData["cocukSayisi"]) == 0)
+    {//Yolcu sayısı belirtilmemişse bilgi mesajı göster.
+        <div class="jumbotron jumbotron-fluid col-12" style="margin-top:150px;color:black;">
+            <div class="container">
+                <h1 class="display-4">Yolcu Sayısını girmediniz.</h1>
+                <p class="lead">Lütfen bilet sorgulama sayfasında yolcu sayısını belirtiniz.</p>
+                @Html.ActionLink("Geri Dön", "Index", "Home", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    }
+    else
+    {
+        for (int i = 0; i < Convert.ToInt32(TempData["yetiskinSayisi"]) + Convert.ToInt32(TempData["cocukSayisi"]); i++)
+        {//girilen yolcu sayısı kadar form getir.
+            <h4 class="header-color">@(i + 1).Yolcu Bilgileri</h4>
+            <hr class="cizgi" style="display:inline-block;margin-left:15px;" /><br />
+            <div class="form-horizontal" style="color:#000;">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="col-md-5 mb-2">
+                        @(i + 1).<label for="validationCustom01">Yolcu Adı</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.YolcuAdi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.YolcuAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-2">
+                        @(i + 1). <label for="validationCustom01">Yolcu Soyadı</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.YolcuSoyadi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.YolcuSoyadi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-5 mb-2">
+                        @(i + 1).<label for="validationCustom01">Yolcu Tc Kimlik</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.YolcuTc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.YolcuTc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 mb-2">
+                        @(i + 1).<label for="validationCustom01">Yolcu E-mail</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-5 mb-2">
+                        @(i + 1). <label for="validationCustom01">Yolcu Cep Telefonu</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.YolcuTel, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.YolcuTel, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Kaydet" class="btn btn-default" /><br /><br />
+                        </div>
+                    </div>
+                </div>
+                
+        }
+    }
+}
+
+                <div>
+                    @Html.ActionLink("Yolcu Listesine Geri Dön", "Index")
+                </div>
+
+                <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                <script src="~/Scripts/jquery.validate.min.js"></script>
+                <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

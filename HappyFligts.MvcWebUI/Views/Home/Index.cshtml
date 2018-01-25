@@ -1,0 +1,335 @@
+﻿
+@model HappyFligts.MvcWebUI.Entity.Havalimanı
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    //tek yön seçildiğinde gidiş dönüş picker'ını disable yap.
+    function disable() {
+        document.getElementById("to").disabled = true;
+    }
+    function enable() {
+        //gidiş dönüş seçildiğinde picker'ın disable değerini false yap.
+        document.getElementById("to").disabled = false;
+    }
+</script>
+<div class="bg-image">
+    <img class="arkaplan" src="/theme/img/pexels-photo-airbus.jpeg" alt="airplane" height="100%;">
+</div>
+<div class="container-fluid">
+    <div class="content" style="margin-top: 260px;">
+        <h2 class="ustbaslik">Welcome to <span class="red-text">Happy Flights</span></h2>
+        <p style="width:40%;">HappyFlights ile, uçak biletlerinizi arama ve rezervasyon detaylı sistemimiz sayesinde güvenli bir şekilde seyahat etmeniz gereken herhangi bir bilete kolayca rezervasyon yapabilirsiniz. </p>
+        <button type="button" class="btn">READ MORE</button>
+        @using (Html.BeginForm("OnlineTicket", "Home", FormMethod.Post))
+        {// formda seçilen değerleri OnlineAction methoduna gönder.
+
+            <div class="form col-md-6" style="margin-top: -190px;margin-left: 650px; box-shadow: 0 4px 6px #c8c8c8;padding: 30px 40px;opacity: 1;color: white;background-color: transparent;border-radius: 10px;border: 2px solid white;">
+                <form name="secim" method="post">
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" id="tekYon" onclick="disable()" value="tekyon">Tek Yön
+                    </label>
+
+                    <label class="radio-inline">
+
+                        <input type="radio" name="optradio" id="gidisDonus" checked onclick="enable()" value="gidisdonus">Gidiş-Dönüş
+                    </label>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="inputEmail4">Nereden</label>
+                            <select class="form-control" name="nereden">
+                                @{ Html.RenderAction("HavalimaniListesi", "Home");}  @*Oluşturduğum PartialView'i <select></select> tagları içerisinde çağırıyorum.*@
+                            </select>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inputEmail4">Nereye</label>
+                            <select class="form-control" name="nereye">
+                                @{Html.RenderAction("HavalimaniListesi", "Home");}
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="inputDateTime">Gidiş Tarihi</label>
+                            <div class="col-12">
+                                <input class="form-control" type="date" value="2018-02-02" id="from" name="ucusTarihi">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            <label for="inputDateTime">Dönüş Tarihi</label>
+                            <div class="col-12">
+                                <input class="form-control" type="date" value="2018-02-07" id="to" name="donusTarihi" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="example-number-input">Yetişkin(13+)</label>
+                            <div class="col-5">
+                                <input class="form-control" type="number" value="1" id="example-number-input" name="yetiskin">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="example-number-input">Çocuk</label>
+                            <div class="col-5">
+                                <input class="form-control" type="number" value="0" id="example-number-input" name="cocuk">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/OnlineTicket"><button type="submit" class="btn btn-primary">Sorgula</button></a>
+                </form>
+            </div>     }
+    </div>
+</div>
+     </div>
+<div class="main">
+    <div class="section-a">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 pencere">
+                <div class="icon">
+                    <i class="fa fa-2x fa-search"></i>
+                </div>
+                <div class="icon-text">
+                    <h6 class="title">Dünya'nın Seyahat Arama Motoru</h6>
+                    <p class="bottom-title">İstediğiniz herhangi bir uçuşu bulmak için arama motorunu kullanarak bir varış yeri ve fiyatı seçin</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pencere">
+                <div class="icon">
+                    <i class="fa fa-2x fa-plane"></i>
+                </div>
+                <div class="icon-text">
+                    <h6 class="title">Hızlı ve Kolay Bilet Al </h6>
+                    <p class="bottom-title">Hemen hemen tüm mevcut havayollarının uçuşlarına uygun bilet sağlıyoruz, böylece onları aramaya ihtiyacınız yok.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pencere">
+                <div class="icon">
+                    <i class="fa fa-2x fa-headphones" aria-hidden="true"></i>
+                </div>
+                <div class="icon-text">
+                    <h6 class="title">Destek Hatlarımız 24 saat Açık</h6>
+                    <p class="bottom-title">7/24 destek operatörleri, ihtiyaçlarınıza göre uygun bir uçuş seçmenize her zaman yardımcı olmaya hazırdır</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 pencere">
+                <div class="icon">
+                    <i class="fa  fa-2x fa-credit-card-alt" aria-hidden="true"></i>
+                </div>
+                <div class="icon-text">
+                    <h6 class="title">Sizin İçin Uygun Ödeme Yöntemi</h6>
+                    <p>Çek, nakit ve kredi kartları dahil olmak üzere çeşitli ödeme yöntemleri sunuyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-b" style="margin-left:15px;">
+        <h2 style="text-align: center;">Ucuz Uçak Biletleri</h2>
+        <hr class="cizgi">
+        <div class="tickets">
+            <div class="city">
+                <img src="/theme/img/pexels-photo-417344.jpeg">
+                <div class="city-tickets">
+                    <h5>Venedik</h5>
+                    <p class="city-name">Italya</p>
+
+                    <p>Kalkış Şehri:</p>
+                    <ul>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Seattle</span></i>
+                            <sup>From</sup>
+                            <p class="price">$119</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Vienna</span></i>
+                            <sup>From</sup>
+                            <p class="price">$219</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Madrid</span></i>
+                            <sup>From</sup>
+                            <p class="price">$359</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Dallas</span></i>
+                            <sup>From</sup>
+                            <p class="price">$136</p>
+                        </li>
+                        <br>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="city">
+                <img src="/theme/img/pexels-photo-221455.jpeg">
+                <div class="city-tickets">
+                    <h5>Maldives</h5>
+                    <p class="city-name">Maldives</p>
+
+                    <p>Departure City:</p>
+                    <ul>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Seattle</span></i>
+                            <sup>From</sup>
+                            <p class="price">$119</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Vienna</span></i>
+                            <sup>From</sup>
+                            <p class="price">$219</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Madrid</span></i>
+                            <sup>From</sup>
+                            <p class="price">$359</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Dallas</span></i>
+                            <sup>From</sup>
+                            <p class="price">$136</p>
+                        </li>
+                        <br>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="city">
+                <img src="/theme/img/pexels-photo-460672%20(1).jpeg">
+                <div class="city-tickets">
+                    <h5>Londra</h5>
+                    <p class="city-name">Londra</p>
+
+                    <p>Kalkış Şehri:</p>
+                    <ul>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Paris</span></i>
+                            <sup>From</sup>
+                            <p class="price">$119</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Berlin</span></i>
+                            <sup>From</sup>
+                            <p class="price">$219</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Rome</span></i>
+                            <sup>From</sup>
+                            <p class="price">$359</p>
+                        </li>
+                        <br>
+                        <li>
+                            <i class="fa fa-arrow-circle-right" aria-hidden="true"><span class="green">Kore</span></i>
+                            <sup>From</sup>
+                            <p class="price">$136</p>
+                        </li>
+                        <br>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="section-c">
+        <div class="shell">
+            <p style="color: #22a9bf;">7/24 Destek Hattı</p>
+            <div class="bold-paragraph">
+                Tel.
+                <a href="#">444 0 479</a>
+            </div>
+            <p>Destek Servisimiz, bilet satın almanıza yardımcı olmak için haftada 7 gün günde 24 saat hizmetinizdedir.</p>
+            <a href="/Home/Contact"><button type="button" class="btn">Bizimle Temasa Geçin</button></a>
+        </div>
+    </div>
+    <div class="section-d">
+        <h2 style="text-align: center;">En Yeni Blog Gönderileri</h2>
+        <hr class="cizgi">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img-top" src="/theme/img/photo-1504197885-609741792ce7.jpg" alt="Card image cap">
+                    <div class="overlay">
+                        <div class="text">Venice</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Bir İtalyan Rüyası-Venedik</h4>
+                    <p class="card-text">Birbirinden kanallarla ayrılan adalar üzerine kurulmuş Venedik; köprüleri, gondolları, Rönesans Dönemi’nin eserlerini görebileceğiniz müzeleri, yüzyıllardır devam eden karnavalı ve belki de en önemlisi trafik gürültüsü duyulmayan sokaklarıyla Akdeniz’in en farklı şehirlerinden biri.</p>
+                    <a href="/Home/BlogVenice" target="_blank"><button type="button" class="btn">DAHA FAZLASI</button></a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 5 mins ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img-top" src="/theme/img/berlin.jpg" alt="Card image cap">
+                    <div class="overlay">
+                        <div class="text">Berlin</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Berlin'e Gitmek İçin 6 Neden</h4>
+                    <p class="card-text">Zıt kutupların oluşturduğu kendine has bir ahenge sahip olan Almanya’nın başkenti Berlin; Brandenburg Kapısı ve Berlin Duvarı’nın artık bir sanat eserine dönen East Side Gallery kısmı gibi Avrupa yakın tarihinin en önemli yapılarının görülebileceği dinamik bir şehir.</p>
+                    <a href="/Home/BlogBerlin" target="_blank"><button type="button" class="btn">DAHA FAZLASI</button></a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 2 mins ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img class="card-img-top" src="/theme/img/istanbull.jpg" alt="Card image cap">
+                    <div class="overlay">
+                        <div class="text">Istanbul</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Her Mevsim Mutlu Eden Şehir</h4>
+                    <p class="card-text">Asya ile Avrupa arasında uzanan eşsiz İstanbul’un, derin tarihini yansıtan yapıları, camileri, kiliseleri ve müzeleriyle ziyaretçilerini her mevsim mutlu edecek güzellikleri var</p>
+                    <a href="/Home/BlogIstanbul"><button type="button" class="btn">DAHA FAZLASI</button></a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 1 mins ago</small>
+                </div>
+            </div>
+        </div>
+        <div class="blog-post container">
+            <a href="~/Home/Blog"><button type="button" class="btn btn-primary">BLOG POSTLARINI GÖRÜNTÜLE</button></a>
+        </div>
+    </div>
+    <div class="section-e container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 airport">
+                <a href="#">
+                    <img src="/theme/img/eimrates.jpg">
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 airport">
+                <a href="#">
+                    <img src="/theme/img/1589-lg.png">
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 airport">
+                <a href="#">
+                    <img src="/theme/img/qatar.jpg">
+                </a>
+            </div>
+            <div class="col-lg-3 col-sm-6 airport">
+                <a href="#">
+                    <img src="/theme/img/british.jpg">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

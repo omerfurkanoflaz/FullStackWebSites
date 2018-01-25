@@ -1,0 +1,37 @@
+﻿@using HappyFligts.MvcWebUI.Entity;
+@model IEnumerable<Ucuslar>
+
+<div class="row container-fluid" style="margin-top: 250px;">
+    @if (Model.Count() == 0)//Eğer modelden bir veri gelmiyor ise _TicketNotFound.cshtml'i göster.(Bilet bulunamadı mesajı)
+    {
+        @Html.Partial("_TicketNotFound")
+    }
+    else
+    {
+        foreach (var bilet in Model)
+        { //Modelden gelen biletlere göre tek tek biletleri ekranda sıralattım.
+    <div class="container col-md-11" style="margin-bottom:30px">
+        <div class="card  bg-white text-dark border-danger" style="color: #000;">
+            <h5 class="card-header">@bilet.Guzergah.Guzergah_Nereden -@bilet.Guzergah.Guzergah_Nereye <span style="float:right">@bilet.UcusTarihi.ToShortDateString()</span></h5>
+            <div class="card-body">
+                <h5 class="card-title">Kalkış Saati:@bilet.KalkisSaati</h5><br />
+                <h5 class="card-title">@bilet.Guzergah.Guzergah_Nereden</h5>
+                <div class="card-text">
+                    <div class="deneme" style="height:100px;">
+                        <img src="/theme/img/if_one_way_1454209.png">
+                        <hr class="cizgi" style="background-color: #808080; width: 90%; margin-top: -30px;">
+                        <h5 class="card-title" style="float: right; margin-top:-150px;">Varış Saati: @bilet.VarisSaati</h5><br />
+                        <h5 class="card-title" style="float: right; margin-top:-110px;"> @bilet.Guzergah.Guzergah_Nereye</h5><br />
+                        <h5 class="card-title" style="float: right;">TRY @bilet.Ucretler.Yetiskin<br />
+                    </div>
+                </div>
+                @if (ViewBag.yolculukTipi == "tekyon") { //Eğer kullanıcı tek yön seçimi yaptıysa ödeme kısmına yönlendir.
+                <a href="/Home/Payment/?id=@bilet.Id" class="btn btn-danger">Bileti Satın Al</a>}
+                else { //Gidiş-dönüş seçimi yaptıysa dönüş biletlerini göstermek için Donus action'ına git.
+                <a href="Donus/@bilet.Id" class="btn btn-danger">Diğer uçuşu seç</a>
+                }
+            </div>
+        </div>
+    </div>   
+        }}
+</div>

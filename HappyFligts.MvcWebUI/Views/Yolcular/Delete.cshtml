@@ -1,0 +1,69 @@
+﻿@model HappyFligts.MvcWebUI.Entity.Yolcular
+
+@{
+    ViewBag.Title = "Delete";
+}
+<style>
+    #header {
+        height: auto;
+    }
+</style>
+</div>
+<div style="padding-left:30px;">
+    <h4>Yolcu bilgilerini silmek istediğinizden emin misiniz?</h4>
+    <h4 class="header-color">Yolcu Sil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.YolcuAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YolcuAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YolcuSoyadi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YolcuSoyadi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YolcuTc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YolcuTc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YolcuTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YolcuTel)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Yolcuyu Sil" class="btn btn-default btn-sm" style="display:inline;" /><br />
+            @Html.ActionLink("Yolcu Listesine Geri Dön", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿@using HappyFligts.MvcWebUI.Entity;
+@model IEnumerable<Ucuslar>
+
+@{
+    ViewBag.Title = "OnlineTicket";
+}
+<style>
+    #header {
+        height: auto;
+    }
+</style>
+</div>
+<h4 style="margin-top: 250px;margin-left:50px;">Bilet Bilgileri</h4>
+<hr />
+<div class="row container-fluid">
+    @foreach (var bilet in Model)
+    {
+        TempData["ucusId"]=bilet.Id;
+        <div class="container col-md-11" style="margin-bottom:30px">
+            <div class="card  bg-white text-dark border-danger" style="color: #000;">
+                <h5 class="card-header">@bilet.Guzergah.Guzergah_Nereden -@bilet.Guzergah.Guzergah_Nereye <span style="float:right;">Uçuş Tarihi: @bilet.UcusTarihi.ToShortDateString()</span></h5>
+                <div class="card-body">
+                    <h5 class="card-title">Kalkış Saati:@bilet.KalkisSaati</h5><br />
+                    <h5 class="card-title">@bilet.Guzergah.Guzergah_Nereden</h5>
+                    <div class="card-text">
+                        <div class="deneme" style="height:100px;">
+                            <img src="/theme/img/if_one_way_1454209.png">
+                            <hr class="cizgi" style="background-color: #808080; width: 90%; margin-top: -30px; margin-left:80px;">
+                            <h5 class="card-title" style="float: right; margin-top:-150px;">Varış Saati: @bilet.VarisSaati</h5><br />
+                            <h5 class="card-title" style="float: right; margin-top:-110px;"> @bilet.Guzergah.Guzergah_Nereye</h5><br />
+                            <h5 class="card-title" style="float: right;">TRY @bilet.Ucretler.Yetiskin<br /></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container col-md-10  alert alert-warning" role="alert">
+        <h4 class="alert-heading">Uçuş Bilgileri</h4>
+        <hr />
+        <p><i class="fa fa-2x fa-exclamation" aria-hidden="true"></i>El bagajınızda parfüm,sprey,deodorant,kesici alet,bıçak vb. eşyalar bulundurmayınız. </p>
+        <p><i class="fa fa-2x fa-exclamation" aria-hidden="true"></i> İç hat yolcularımızın uçuş saatinden 1 saat önce, dış hat yolcularımızın uçuş saatinden 2 saat önce havaalanında olası gerekmektedir.</p>
+        <hr>
+        <p class="mb-0"><i class="fa fa-suitcase" aria-hidden="true"></i>El bagajı hakkı:8kg</p>
+        <p class="mb-0"><i class="fa fa-suitcase" aria-hidden="true"></i>Bagaj hakkı:30kg</p>
+    </div>
+    <div class="col-md-11" style="float:right;margin-bottom:100px;">
+        <a href="/Yolcular/Create/"><input type="submit" value="Yolcu Bilgileri Adımına Git" class="btn btn-primary" style="float:right" /></a>
+</div>
+</div>
